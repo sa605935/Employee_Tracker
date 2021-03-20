@@ -5,13 +5,14 @@ const logo = require("asciiart-logo");
 const chalk = require("chalk");
 const config = require("./package.json");
 console.log(logo(config).render());
+require('dotenv').config();
 
 var connection = mysql.createConnection({
     host: "localhost",
     port: 3306,
-    user: "root",
-    password: "password",
-    database: "employeeTracker_db",
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
 });
 
 connection.connect(function (err) {
